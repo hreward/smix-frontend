@@ -56,6 +56,14 @@
 						</table>
 				</div>
 			</div>
+				<div *ngIf="client.status == 'active'; else deletedClientTemp" (click)="deleteClient()" class="position-absolute text-danger p-0" style="top:10px; right:10px; cursor: pointer;">
+					<i class="fa fa-trash-o"></i> 
+				</div>
+				<ng-template #deletedClientTemp>
+					<div (click)="restoreClient()" class="position-absolute text-success p-0" style="top:10px; right:10px; cursor: pointer;">
+						<i class="fa fa-rotate-left"></i>
+					</div>
+				</ng-template>{{client.status}}
 		</div>
 	</div>
 </div>
@@ -81,12 +89,12 @@
 						<td>{{invoice.created_at | date:'MM dd YYYY'}}</td>
 						<td>{{invoice.amount}}</td>
 						<td>
-						<label class="badge badge-danger">{{invoice.status}}</label>
+							<label class="badge badge-danger">{{invoice.status}}</label>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			</div>
 		</div>
-		</div>
+	</div>
 </div>

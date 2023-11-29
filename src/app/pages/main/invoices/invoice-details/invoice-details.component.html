@@ -1,0 +1,142 @@
+
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Invoices</h4>
+			<div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+				<ul class="quick-links">
+					<li><a>Invoice Details</a></li>
+					<li><a>{{invoiceid}}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="card card-rounded bg-transparent p-2">
+                        <div class="row">
+                            <div class="col-9">
+                                <p>Invoice To:</p>
+                                <h4 [routerLink]="'/client-details/'+client.id">{{client.name}}</h4>
+                                <p>
+                                    {{client.phone}} <br>
+                                    {{client.address}}
+                                </p>
+                            </div>
+                            <div class="col-3">
+                                <img class="rounded img-thumbnail img-raised" [src]="client.avatar" alt="profile-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-12"></div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="card-rounded bg-transparent p-2">
+                        <div class="row">
+                            <div class="col-12">
+                                Invoice No.:
+                                <h4> {{invoice.reference}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                Currency:
+                                <h4> {{invoice.currency}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                Due Date:
+                                <h4> {{invoice.duedate | date:'MMMM d, YYYY'}} </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 *ngIf="invoice.status == 'paid'" class="text-success text-uppercase"> {{invoice.status}} </h4>
+                                <h4 *ngIf="invoice.status == 'unpaid'" class="text-danger text-uppercase"> {{invoice.status}} </h4>
+                                <h4 *ngIf="invoice.status == 'partly paid'" class="text-warning text-uppercase"> {{invoice.status}} </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <div class="card card-no-shadow bg-transparent">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Description</th>
+                                <th>Qty</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoice.items; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    {{item.description}}
+                                </td>
+                                <td>
+                                    {{item.quantity}}
+                                </td>
+                                <td>
+                                    {{item.rate | currency:' '}}
+                                </td>
+                                <td>
+                                    {{item.amount | currency:' '}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-4 col-md-4 col-12 align-self-center">
+                            <div class="form-group">
+                                <label>Scan to pay</label><br>
+                                <span class="btn btn-lg btn-inverse-outline-warning"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12 align-self-center">
+                            <div class="form-group">
+                                <button [disabled]="sharing" class="btn btn-lg btn-dark" (click)="share()"> <i class="mr-2 fa fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Total Amount</label><br>
+                                    <span class="btn btn-lg btn-dark">{{invoice.amount | currency:invoice.currency}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Amount Paid</label><br>
+                                    <span class="btn btn-lg btn-success">{{invoice.amount | currency:invoice.currency}}</span>
+                                </div>
+                            </div>
+                            <div *ngIf="invoice.amountpaid>0 && invoice.amount > invoice.amountpaid" class="col-lg-2 col-md-3 col-12">
+                                <div class="form-group">
+                                    <label>Balance</label>
+                                    <span class="btn btn-lg btn-danger">{{invoice.amount - invoice.amountpaid | currency:invoice.currency}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

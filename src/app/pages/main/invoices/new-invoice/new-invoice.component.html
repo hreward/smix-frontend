@@ -1,0 +1,116 @@
+
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Invoices</h4>
+			<div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+				<ul class="quick-links">
+					<li><a>New Invoice</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<form #invoiceform="ngForm" (submit)="submit()">
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="form-group">
+                        <label class="label">Client</label>
+                        <div class="input-group">
+                            <select [(ngModel)]="invoice.clientid" name="clientid" required class="form-control">
+                                <option value="">Select Client</option>
+                                <option *ngFor="let client of clients" [value]="client.id">{{client.name}} | {{client.id}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="form-group">
+                        <label class="label">Due Date</label>
+                        <div class="input-group">
+                            <input type="date" [(ngModel)]="invoice.duedate" name="duedate" required class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="form-group">
+                        <label class="label">Currency</label>
+                        <div class="input-group">
+                            <select [(ngModel)]="invoice.currency" name="currency" required class="form-control">
+                                <option value="">Select Currency</option>
+                                <option value="NGN">NGN</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="card card-no-shadow bg-transparent">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Description</th>
+                                <th>Qty</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invoice.items; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <input class="form-control" type="text" required [(ngModel)]="item.description" [name]="'items['+i+']description'">
+                                </td>
+                                <td>
+                                    <input class="form-control" type="number" required [(ngModel)]="item.quantity" [name]="'items['+i+']quantity'" (keyup)="calculateInvoice()" (change)="calculateInvoice()">
+                                </td>
+                                <td>
+                                    <input class="form-control" type="number" required [(ngModel)]="item.rate" [name]="'items['+i+']rate'" (keyup)="calculateInvoice()" (change)="calculateInvoice()">
+                                </td>
+                                <td>
+                                    {{item.quantity*item.rate | currency:' '}}
+                                </td>
+                                <td>
+                                    <i *ngIf="invoice.items.length > 1" (click)="removeItem(i)" class="text-danger fa fa-trash"></i> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="col-lg-2 col-md-3 col-12 align-self-center">
+                        <div class="form-group">
+                            <span (click)="addItem()" class="btn btn-sm btn-inverse-outline-success">Add Item</span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-3 col-12 align-self-center float-right">
+                        <div class="form-group">
+                            <span class="btn btn-lg btn-dark">{{invoiceTotal | currency:invoice.currency}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <div class="col">
+            <div class="form-group mt-5">
+                <button [disabled]="fetchingData || invoiceform.invalid" class="btn btn-primary btn-lg submit-btn btn-block w-50 mx-auto">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -6,52 +6,38 @@ const API_BASE = isDevMode()? "http://localhost:8000/" : "https://api.smix.com.n
 @Injectable({
     providedIn: 'root'
 })
-export class ClientService {
+export class InvoiceService {
 
     fetchingData = false;
 
     constructor(private http: HttpClient) {}
 
-    getClient(clientid:string){
+    getInvoice(invoiceid:string){
         let authtoken=localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
         
-        return this.http.get<any>(API_BASE + `client/${clientid}`, {headers});
+        return this.http.get<any>(API_BASE + `invoice/${invoiceid}`, {headers});
     }
 
-    getClients(){
+    getInvoices(){
         let authtoken=localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
 
-        return this.http.get<any>(API_BASE + "client/", {headers});
+        return this.http.get<any>(API_BASE + "invoice/", {headers});
     }
 
-    newClient(clientData:any){
-        let authtoken=localStorage.getItem("cauthtoken") || "";
-        const headers = { 'Authorization': authtoken };
-        
-        return this.http.post<any>(API_BASE + "client/new", clientData, {headers});
-    }
-
-    deleteClient(clientid:string){
+    newInvoice(invoice:any){
         let authtoken=localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
         
-        return this.http.delete<any>(API_BASE + `client/${clientid}`, {headers});
+        return this.http.post<any>(API_BASE + "invoice/new", invoice, {headers});
     }
 
-    restoreClient(clientid:string){
+    deleteInvoice(invoiceid:string){
         let authtoken=localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
         
-        return this.http.patch<any>(API_BASE + `client/${clientid}`, {}, {headers});
-    }
-
-    updateClient(clientid: string, clientData:any){
-        let authtoken=localStorage.getItem("cauthtoken") || "";
-        const headers = { 'Authorization': authtoken };
-        
-        return this.http.post<any>(API_BASE + `client/${clientid}`, clientData, {headers});
+        return this.http.delete<any>(API_BASE + `invoice/${invoiceid}`, {headers});
     }
 
     sendFeedBack(name:string, email:string, pagename:string, pageurl:string, message:string, pageimage?:File){

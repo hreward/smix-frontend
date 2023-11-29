@@ -13,6 +13,9 @@ import { ResetpasswordComponent } from './pages/auth/resetpassword/resetpassword
 import { VerifycodeComponent } from './pages/auth/verifycode/verifycode.component';
 import { ClientDetailsComponent } from './pages/main/clients/client-details/client-details.component';
 import { NewClientComponent } from './pages/main/clients/new-client/new-client.component';
+import { NewInvoiceComponent } from './pages/main/invoices/new-invoice/new-invoice.component';
+import { InvoiceDetailsComponent } from './pages/main/invoices/invoice-details/invoice-details.component';
+import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.component';
 
 const routes: Routes = [
 	// { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
@@ -20,12 +23,16 @@ const routes: Routes = [
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'resetpassword', component: ResetpasswordComponent },
 	{ path: 'verify-code', component: VerifycodeComponent },
+	{ path: 'view-invoice/:id', component: ViewInvoiceComponent },
 	{
 		path: '', component: MainComponent,
 		children: [
 			{ path: 'home', component: DashboardComponent },
 			{ path: 'dashboard', component: DashboardComponent },
+
 			{ path: 'invoices', component: InvoicesComponent },
+			{ path: 'newinvoice', component: NewInvoiceComponent },
+			{ path: 'invoice-details/:id', component: InvoiceDetailsComponent },
 
 			{ path: 'client-profiles', component: ClientProfilesComponent },
 			{ path: 'newclient', component: NewClientComponent },

@@ -1,37 +1,54 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ClientService } from 'src/app/services/client.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
-	selector: 'app-client-details',
-	templateUrl: './client-details.component.html',
-	styleUrls: ['./client-details.component.scss']
+	selector: 'app-new-invoice',
+	templateUrl: './new-invoice.component.html',
+	styleUrls: ['./new-invoice.component.scss']
 })
-export class ClientDetailsComponent {
+export class NewInvoiceComponent {
 
-	clientid: any;
-	fetchingData = false;
-	client:any;
-
-	constructor(private activatedRoute: ActivatedRoute, private clientService: ClientService, private toast:HotToastService, private router: Router){}
-
-
-	ngOnInit(){
-		this.activatedRoute.paramMap.subscribe(
-			(data)=>{
-				this.clientid = data.get("id");
-				this.getClientDetails();
+	invoice = {
+		clientid: '',
+		duedate: '',
+		currency: '',
+		items: [
+			{
+				description: '',
+				quantity: 0,
+				rate: 0
 			}
-		)
+		]
+	};
+	emptyItem = {
+		description: "",
+		quantity: 0,
+		rate: 0
 	}
 
-	getClientDetails(){
-		this.clientService.getClient(this.clientid).subscribe({
+	invoiceTotal = 0;
+	fetchingData = false;
+	clients:any = [];
+
+	constructor(private invoiceService: InvoiceService, private clientService: ClientService, private toast: HotToastService, private router: Router){}
+	
+	ngOnInit(){
+		this.getClients();
+	}
+
+	getClients(){
+		this.clientService.getClients().subscribe({
             next: (data:any) => {
                 this.fetchingData = false;
                 if(data.status && data.success){
-                    this.client = data.data;
+					this.clients = data.data;
+					this.clients.filter((client:any)=>{
+						client.status == 'active';
+					});
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }
@@ -50,13 +67,26 @@ export class ClientDetailsComponent {
 		})
 	}
 
-	deleteClient(){
-		this.clientService.deleteClient(this.clientid).subscribe({
+	addItem(){
+		this.invoice.items.push(Object.create(this.emptyItem));
+	}
+	removeItem(index:number){
+		this.invoice.items.splice(index, 1);
+	}
+
+	calculateInvoice(){
+		this.invoiceTotal = 0;
+		this.invoice.items.forEach((item)=>{
+			this.invoiceTotal += item.rate*item.quantity;
+		})
+	}
+
+	submit(){
+		this.invoiceService.newInvoice(this.invoice).subscribe({
             next: (data:any) => {
                 this.fetchingData = false;
                 if(data.status && data.success){
-                    this.toast.info(data.message, {id:"msg"});
-					this.router.navigateByUrl('/client-profiles')
+					this.router.navigateByUrl(`/invoice-details/${data.data.reference}`);
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }
@@ -72,32 +102,6 @@ export class ClientDetailsComponent {
                     this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
                 }
             }
-		})
+		});
 	}
-
-	restoreClient(){
-		this.clientService.restoreClient(this.clientid).subscribe({
-            next: (data:any) => {
-                this.fetchingData = false;
-                if(data.status && data.success){
-                    this.toast.success(data.message, {id:"msg"});
-					this.router.navigateByUrl('/client-profiles')
-                } else {
-                    this.toast.error(data.message, {id:"errmsg"});
-                }
-            },
-            error: (error:any) => {
-                this.fetchingData = false;
-				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
-                    this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
-                } else if(typeof(error.error.error) == 'string'){
-                    this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
-                } else {
-                    this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
-                }
-            }
-		})
-	}
-
 }

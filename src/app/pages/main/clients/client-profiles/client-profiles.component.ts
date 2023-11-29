@@ -43,8 +43,11 @@ export class ClientProfilesComponent {
             },
             error: (error:any) => {
                 this.fetchingData = false;
-                if(error.error instanceof ProgressEvent){
+				console.log(typeof(error.error.error))
+                if(error.error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
+                } else if(typeof(error.error.error) == 'string'){
+                    this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
                 } else {
                     this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
                 }

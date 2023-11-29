@@ -23,6 +23,9 @@ import { FormsModule } from '@angular/forms';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { ClientDetailsComponent } from './pages/main/clients/client-details/client-details.component';
 import { NewClientComponent } from './pages/main/clients/new-client/new-client.component';
+import { NewInvoiceComponent } from './pages/main/invoices/new-invoice/new-invoice.component';
+import { InvoiceDetailsComponent } from './pages/main/invoices/invoice-details/invoice-details.component';
+import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { NewClientComponent } from './pages/main/clients/new-client/new-client.c
     AnalyticsComponent,
     CustomerSupportComponent,
     ClientDetailsComponent,
-    NewClientComponent
+    NewClientComponent,
+    NewInvoiceComponent,
+    InvoiceDetailsComponent,
+    ViewInvoiceComponent
   ],
   imports: [
     BrowserModule,
