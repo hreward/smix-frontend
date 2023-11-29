@@ -1,0 +1,48 @@
+
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Client</h4>
+            <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                <ul class="quick-links">
+                    <li><a>Client Profile List</a></li>
+                </ul>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="row page-title-header">
+	<div class="col-md-12">
+		<div class="page-header-toolbar">
+			<button (click)="filter('active')" class="btn advanced-link toolbar-item font-weight-bolder">Active Clients ({{activeCount}})</button>
+			<button (click)="filter('deleted')" class="btn advanced-link toolbar-item font-weight-bolder">Past Clients ({{pastCount}})</button>
+			<button (click)="filter('')" class="btn advanced-link toolbar-item font-weight-bolder">All Clients ({{allClients.length}})</button>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div *ngFor="let client of clients" class="col-lg-4">
+		<div class="card card-rounded p-2">
+			<div class="row">
+				<div class="col-3">
+					<img class="rounded img-thumbnail rounded-circle img-raised" [src]="client.avatar" alt="profile-image">
+				</div>
+				<div class="col-9">
+					<h4>{{client.name}}</h4>
+					<p>
+						{{client.phone}} <br>
+						{{client.status}}
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<button [routerLink]="'/client-details/'+client.id" class="btn w-100">View transaction history <span class="fa fa-chevron-right float-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

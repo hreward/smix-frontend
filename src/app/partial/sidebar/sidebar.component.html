@@ -1,0 +1,69 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+		<ul class="nav text-gray">
+			<li class="nav-item nav-category py-3"></li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+					<i class="menu-icon typcn typcn-document-text"></i>
+					<span class="menu-title">Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="collapse" href="#ui-clients" aria-expanded="false" aria-controls="ui-clients">
+					<i class="menu-icon fa fa-user"></i>
+					<span class="menu-title">Client Profiles</span>
+					<i class="menu-arrow"></i>
+				</a>
+				<div class="collapse" id="ui-clients">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/client-profiles" routerLinkActive="active">Client Profile list</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/newclient" routerLinkActive="active">New Client Profile</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/transactions" routerLinkActive="active">
+					<i class="menu-icon typcn typcn-document-text"></i>
+					<span class="menu-title">Transactions</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="collapse" href="#ui-invoice" aria-expanded="false" aria-controls="ui-invoice">
+					<i class="menu-icon fa fa-newspaper-o"></i>
+					<span class="menu-title">Invoices</span>
+					<i class="menu-arrow"></i>
+				</a>
+				<div class="collapse" id="ui-invoice">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/invoices" routerLinkActive="active">Invoice list</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/invoices/new" routerLinkActive="active">New Invoice</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/analytics" routerLinkActive="active">
+					<i class="menu-icon typcn typcn-document-text"></i>
+					<span class="menu-title">Report and Analytics</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/customer-support" routerLinkActive="active">
+					<i class="menu-icon typcn typcn-document-text"></i>
+					<span class="menu-title">Customer Support</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" (click)="logout()">
+					<i class="menu-icon typcn typcn-document-text"></i>
+					<span class="menu-title">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</nav>

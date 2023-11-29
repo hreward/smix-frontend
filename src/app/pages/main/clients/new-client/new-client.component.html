@@ -1,0 +1,94 @@
+
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Client</h4>
+            <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+                <ul class="quick-links">
+                    <li><a>New Client</a></li>
+                    <li><a>New Client</a></li>
+                </ul>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="col-lg-12 col-md-12 align-self-center">
+    <div class="mx-lg-5">
+        <form #newclientform="ngForm" (submit)="submit(newclientform)">
+            <div class="form-group">
+                <label class="label">Name</label>
+                <div class="input-group input-group-lg">
+                    <input type="text" ngModel name="name" required class="form-control" placeholder="e.g Ahmed Chukwuka">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-6">
+                    <div class="form-group">
+                        <label class="label">Email</label>
+                        <div class="input-group input-group-lg">
+                            <input type="text" ngModel name="email" required class="form-control" placeholder="e.g ahmedchuks@gmail.com">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-6">
+                    <div class="form-group">
+                        <label class="label">Contact Number</label>
+                        <div class="input-group input-group-lg">
+                            <input type="tel" ngModel name="phonenumber" required class="form-control" placeholder="e.g ahmedchuks@gmail.com">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-6">
+                    <div class="form-group">
+                        <label class="label">Address</label>
+                        <div class="input-group input-group-lg">
+                            <input type="text" ngModel name="address" required class="form-control" placeholder="e.g 12 Eko Way, Lagos State.">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-6">
+                    <div class="form-group">
+                        <label class="label">Country</label>
+                        <div class="input-group input-group-lg">
+                            <select ngModel name="country" required class="form-control">
+                                <option value="">Select Country</option>
+                                <option value="nigeria">Nigeria</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="form-group">
+                        <label class="label">Client Profile Image</label>
+                        <div class="input-group input-group-lg">
+                            <input #clientavatar type="file" hidden name="avatar" ngModel class="form-control form-control-file" accept="image/*" (change)="avatarUpload($event)">
+                            <img class="img-thumbnail img-raised border p-2 border-secondary rounded" *ngIf="clientavatar.value !== ''; else avatarPlaceholder" [src]="avatarUrl" alt="avatar">
+                            <ng-template #avatarPlaceholder>
+                                <i class="rounded img-raised border p-2 border-secondary fa fa-user-o fa-5x"></i>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-12 align-self-center">
+                    <div class="form-group">
+                        <span (click)="clientavatar.click()" class="btn btn-sm btn-inverse-outline-success">Upload</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-12 align-self-center">
+                    <div class="form-group">
+                        <span (click)="clientavatar.value = ''" class="btn btn-sm btn-inverse-outline-danger">Remove</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="fetchingData || newclientform.invalid" class="btn btn-primary btn-lg submit-btn btn-block w-50">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+
+<div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+	<div class="row w-100">
+		<div class="col-lg-10 col-md-12 mx-auto">
+			<div class="row mx-auto">
+				<div class=" bg-white col-lg-6 d-none d-lg-block" style="background-image: url('assets/images/authimage.jpg'); background-size: 630px 950px; background-repeat: no-repeat;">
+				</div>
+				<div class=" bg-white col-lg-6 col-md-12 align-self-center">
+					<div class="mb-5 mt-3 text-center">
+						<h2> Create An Account</h2>
+						<h6> Signup today to manage and track payments efficiently for your small business</h6>
+					</div>
+					<div class="auto-form-wrapper">
+						<form #signupform="ngForm" (submit)="submit(signupform)">
+							<div class="form-group">
+								<label class="label">Business Name</label>
+								<div class="input-group">
+									<input type="text" ngModel name="businessname" required class="form-control" placeholder="e.g Smix Ventures">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label">Email</label>
+								<div class="input-group">
+									<input type="email" ngModel name="email" required class="form-control" placeholder="e.g smixbusiness@gmail.com">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label">Phone Number</label>
+								<div class="input-group">
+									<input type="tel" ngModel name="phonenumber" required class="form-control" placeholder="e.g +2348123456789">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label">Identification Number</label>
+								<div class="input-group">
+									<input type="tel" ngModel name="identificationnumber" class="form-control" placeholder="e.g BN 123456">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label">Password</label>
+								<div class="input-group">
+									<input type="password" ngModel name="password" class="form-control" placeholder="********">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
+										<label class="label">Account Number</label>
+										<div class="input-group">
+											<input type="tel" ngModel name="accountnumber" required class="form-control" placeholder="e.g 2011111111">
+											<div class="input-group-append">
+												<span class="input-group-text">
+													<i class="fa fa-check-circle-o"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
+										<label class="label">Bank</label>
+										<div class="input-group">
+											<select ngModel name="bankcode" required class="form-control">
+												<option value="">Select Bank</option>
+												<option value="033">UBA Bank</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="label">Account Name</label>
+								<div class="input-group">
+									<input type="text" disabled class="form-control" value="Waiting for input">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="fa fa-check-circle-o"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group d-flex justify-content-center">
+								<div class="form-check form-check-flat mt-0">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" checked> I agree to the terms </label>
+								</div>
+							</div>
+							<div class="form-group">
+								<button [disabled]="fetchingData || signupform.invalid" class="btn btn-primary submit-btn btn-block">Sign Up</button>
+							</div>
+							<div class="text-block text-center my-3">
+								<span class="text-small">Already have and account?</span>
+								<a routerLink="/login" class="text-black text-small font-weight-semibold"> Login</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

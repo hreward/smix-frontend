@@ -1,0 +1,92 @@
+
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Clients</h4>
+			<div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+				<ul class="quick-links">
+					<li><a>Client Details</a></li>
+					<li><a>{{clientid}}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-lg-8">
+		<div class="card card-rounded p-2">
+			<div class="row">
+				<div class="col-3">
+					<img class="rounded img-thumbnail rounded-circle img-raised" [src]="client.avatar" alt="profile-image">
+				</div>
+				<div class="col-9">
+					<table class="border-0">
+						<tbody>
+							<tr>
+								<td class="font-weight-bold pr-2">ID:</td>
+								<td>{{client.id}}</td>
+							</tr>
+							<tr>
+								<td class="font-weight-bold pr-2">Name:</td>
+								<td>{{client.name}}</td>
+							</tr>
+							<tr>
+								<td class="font-weight-bold pr-2">Phone No.:</td>
+								<td>{{client.phone}}</td>
+							</tr>
+							<tr>
+								<td class="font-weight-bold pr-2">Email:</td>
+								<td>{{client.email}}</td>
+							</tr>
+							<tr>
+								<td class="font-weight-bold pr-2">Address:</td>
+								<td>{{client.address}}</td>
+							</tr>
+							<tr>
+								<td class="font-weight-bold pr-2">Status</td>
+								<td>
+									<label class="badge badge-danger">Owing</label>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row mt-5">
+	<div class="col-lg-12">
+		<div class="card card-no-shadow bg-transparent">
+			<div class="card-body">
+			<h4 class="card-titlee">Client Invoices</h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Invoice No.</th>
+						<th>Date</th>
+						<th>Amount</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let invoice of client.invoices">
+						<td>{{invoice.reference}}</td>
+						<td>{{invoice.created_at | date:'MM dd YYYY'}}</td>
+						<td>{{invoice.amount}}</td>
+						<td>
+						<label class="badge badge-danger">{{invoice.status}}</label>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+		</div>
+</div>
