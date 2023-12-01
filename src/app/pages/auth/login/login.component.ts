@@ -16,6 +16,7 @@ export class LoginComponent {
 	constructor(private authService: AuthService, private toast: HotToastService, private router: Router){}
 
 	submit(f:NgForm){
+        this.fetchingData = true;
 		if(f.invalid) return;
 		this.authService.login(f.value).subscribe({
             next: (data:any) => {
@@ -23,16 +24,16 @@ export class LoginComponent {
                 if(data.status && data.success){
                     this.toast.info(data.message, {id:"loginmsg", dismissible:true, autoClose:true, duration: 7000});
 					localStorage.setItem("cauthtoken", data.data.token);
-                    this.router.navigate(["/home"]);
-                    console.log("ddddd")
+                    setTimeout(() => {
+                        this.router.navigate(["/home"]);
+                    }, 3000);
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }
             },
             error: (error:any) => {
                 this.fetchingData = false;
-				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});

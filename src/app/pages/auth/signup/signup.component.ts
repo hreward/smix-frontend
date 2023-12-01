@@ -12,8 +12,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent {
 
 	fetchingData = false;
+    banks:any = [];
+    accountName = 'Waiting for input'
 
 	constructor(private authService: AuthService, private toast: HotToastService, private router: Router){}
+
+    ngOnInit(){
+        this.getBanks();
+    }
 
 	submit(f:NgForm){
 		if(f.invalid) return;
@@ -31,12 +37,59 @@ export class SignupComponent {
             },
             error: (error:any) => {
                 this.fetchingData = false;
-				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
                 } else {
+                    this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
+                }
+            }
+		})
+	}
+	getBanks(){
+		this.authService.getBanks().subscribe({
+            next: (data:any) => {
+                this.fetchingData = false;
+                if(data.status && data.success){
+                    this.banks = data.data;
+                } else {
+                    this.toast.error(data.message, {id:"errmsg"});
+                }
+            },
+            error: (error:any) => {
+                this.fetchingData = false;
+                if(error.error instanceof ProgressEvent){
+                    this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
+                } else if(typeof(error.error.error) == 'string'){
+                    this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
+                } else {
+                    this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
+                }
+            }
+		})
+	}
+	resolveAccount(f:NgForm){
+        if(f.value['accountnumber'].length < 10 || f.value['bankcode'] === ''){
+            return;
+        }
+		this.authService.resolveAccount({accountnumber: f.value['accountnumber'], bankcode: f.value['bankcode']}).subscribe({
+            next: (data:any) => {
+                this.fetchingData = false;
+                if(data.status && data.success){
+                    this.accountName = data.data;
+                } else {
+                    this.toast.error(data.message, {id:"errmsg"});
+                }
+            },
+            error: (error:any) => {
+                this.fetchingData = false;
+                if(error.error instanceof ProgressEvent){
+                    this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
+                } else if(typeof(error.error.error) == 'string'){
+                    this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
+                } else {
+                    this.accountName = error.error.message;
                     this.toast.error(error.error.message, {id:"errmsg", autoClose:true});
                 }
             }

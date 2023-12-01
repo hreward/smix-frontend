@@ -32,6 +32,20 @@ export class AuthService {
         return this.http.post<any>(API_BASE + "business/signup", userData, {headers});
     }
 
+    getBanks(){
+        this.fetchingData = true;
+        const headers = { 'Authorization': 'pkey-fjsdhdfgs' };
+        
+        return this.http.get<any>(API_BASE + "business/banklist", {headers});
+    }
+
+    resolveAccount(bankData:any){
+        this.fetchingData = true;
+        const headers = { 'Authorization': 'pkey-fjsdhdfgs' };
+        
+        return this.http.post<any>(API_BASE + "business/resolve-account", bankData, {headers});
+    }
+
     verifyOTP(email:string, otp:string){
         this.fetchingData = true;
         const headers = { 'Authorization': 'pkey-fjsdhdfgs' };

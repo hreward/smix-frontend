@@ -56,7 +56,7 @@ export class NewInvoiceComponent {
             error: (error:any) => {
                 this.fetchingData = false;
 				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
@@ -94,7 +94,7 @@ export class NewInvoiceComponent {
             error: (error:any) => {
                 this.fetchingData = false;
 				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});

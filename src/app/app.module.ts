@@ -26,6 +26,7 @@ import { NewClientComponent } from './pages/main/clients/new-client/new-client.c
 import { NewInvoiceComponent } from './pages/main/invoices/new-invoice/new-invoice.component';
 import { InvoiceDetailsComponent } from './pages/main/invoices/invoice-details/invoice-details.component';
 import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.component';
+import { LandingPageComponent } from './pages/public/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.c
     NewClientComponent,
     NewInvoiceComponent,
     InvoiceDetailsComponent,
-    ViewInvoiceComponent
+    ViewInvoiceComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

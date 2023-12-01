@@ -22,7 +22,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
     });
 
     //checkbox and radios
-    $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
+    // $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
   });
   $('.dropdown-toggle').dropdown()

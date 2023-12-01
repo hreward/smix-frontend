@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,8 +32,7 @@ export class SidebarComponent {
             },
             error: (error:any) => {
                 this.fetchingData = false;
-				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
@@ -57,8 +56,7 @@ export class SidebarComponent {
             },
             error: (error:any) => {
                 this.fetchingData = false;
-				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
@@ -70,4 +68,25 @@ export class SidebarComponent {
 		localStorage.removeItem('cauthtoken');
 		this.router.navigate(["/login"]);
 	}
+
+    
+	//closes sidebar on external(outside click)
+	@HostListener('document:click', ['$event'])
+	sideBarClose(event:Event){
+		
+		let sideBar = document.getElementById('sidebar');
+		let sideBarBtn = document.getElementById('openmenu');
+		let source:HTMLElement = <HTMLElement>event.target;
+		if(source == (sideBarBtn) || sideBarBtn?.contains(source)){
+			event.preventDefault();
+		} else if (!sideBar?.contains(source)){
+			event.preventDefault();
+            sideBar?.classList.remove('active');
+        }
+	}
+
+    closeSidebar(){
+        let sideBar = document.getElementById('sidebar');
+        sideBar?.classList.remove('active');
+    }
 }

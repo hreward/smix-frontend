@@ -17,6 +17,7 @@ import { NewInvoiceComponent } from './pages/main/invoices/new-invoice/new-invoi
 import { InvoiceDetailsComponent } from './pages/main/invoices/invoice-details/invoice-details.component';
 import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.component';
 import { AuthguardGuard } from './guards/authguard.guard';
+import { LandingPageComponent } from './pages/public/landing-page/landing-page.component';
 
 const routes: Routes = [
 	// { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
@@ -25,6 +26,8 @@ const routes: Routes = [
 	{ path: 'resetpassword', component: ResetpasswordComponent },
 	{ path: 'verify-code', component: VerifycodeComponent },
 	{ path: 'view-invoice/:id', component: ViewInvoiceComponent },
+	{ path: 'welcome', component: LandingPageComponent },
+	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 	{
 		path: '', component: MainComponent, canActivate: [AuthguardGuard],
 		children: [

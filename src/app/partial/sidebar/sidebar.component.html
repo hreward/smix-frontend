@@ -2,7 +2,7 @@
 		<ul class="nav text-gray">
 			<li class="nav-item nav-category py-3 mx-3"><h4 class="text-truncate">{{business.name}}</h4><h6 class="text-truncate">ID: {{business.reference}}</h6></li>
 			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/dashboard" routerLinkActive="active">
+				<a class="nav-link rounded mx-3" routerLink="/dashboard" routerLinkActive="active" (click)="closeSidebar()">
 					<i class="menu-icon fa fa-search"></i>
 					<span class="menu-title">Dashboard</span>
 				</a>
@@ -16,16 +16,16 @@
 				<div class="collapse" id="ui-clients">
 					<ul class="nav flex-column sub-menu">
 						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/client-profiles" routerLinkActive="active">Client Profile list</a>
+							<a class="nav-link rounded mx-3" routerLink="/client-profiles" routerLinkActive="active" (click)="closeSidebar()">Client Profile list</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/newclient" routerLinkActive="active">New Client Profile</a>
+							<a class="nav-link rounded mx-3" routerLink="/newclient" routerLinkActive="active" (click)="closeSidebar()">New Client Profile</a>
 						</li>
 					</ul>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/transactions" routerLinkActive="active">
+				<a class="nav-link rounded mx-3" routerLink="/transactions" routerLinkActive="active" (click)="closeSidebar()">
 					<i class="menu-icon typcn typcn-document-text"></i>
 					<span class="menu-title">Transactions</span>
 				</a>
@@ -39,28 +39,28 @@
 				<div class="collapse" id="ui-invoice">
 					<ul class="nav flex-column sub-menu">
 						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/invoices" routerLinkActive="active">Invoice list</a>
+							<a class="nav-link rounded mx-3" routerLink="/invoices" routerLinkActive="active" (click)="closeSidebar()">Invoice list</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/newinvoice" routerLinkActive="active">New Invoice</a>
+							<a class="nav-link rounded mx-3" routerLink="/newinvoice" routerLinkActive="active" (click)="closeSidebar()">New Invoice</a>
 						</li>
 					</ul>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/analytics" routerLinkActive="active">
+				<a class="nav-link rounded mx-3" routerLink="/analytics" routerLinkActive="active" (click)="closeSidebar()">
 					<i class="menu-icon typcn typcn-document-text"></i>
 					<span class="menu-title">Report and Analytics</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/customer-support" routerLinkActive="active">
+				<a class="nav-link rounded mx-3" routerLink="/customer-support" routerLinkActive="active" (click)="closeSidebar()">
 					<i class="menu-icon typcn typcn-document-text"></i>
 					<span class="menu-title">Customer Support</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link rounded mx-3" (click)="logout()">
+				<a class="nav-link rounded mx-3" (click)="logout()" (click)="closeSidebar()">
 					<i class="menu-icon typcn typcn-document-text"></i>
 					<span class="menu-title">Logout</span>
 				</a>

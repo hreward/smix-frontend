@@ -23,7 +23,7 @@ export class NewClientComponent {
                 this.fetchingData = false;
                 if(data.status && data.success){
                     this.toast.info(data.message, {id:"loginmsg", dismissible:true, autoClose:true, duration: 7000});
-                    this.router.navigate(["/client-details/14525"]);
+                    this.router.navigate([`/client-details/${data.data.id}`]);
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }
@@ -31,7 +31,7 @@ export class NewClientComponent {
             error: (error:any) => {
                 this.fetchingData = false;
 				console.log(typeof(error.error.error))
-                if(error.error.error instanceof ProgressEvent){
+                if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
                     this.toast.error("You seem logged out. Please login.", {id:"errmsg", autoClose:true});
