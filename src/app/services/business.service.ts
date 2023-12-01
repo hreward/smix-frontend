@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { emptyuser, User } from '../interfaces/user';
 
-const API_BASE = isDevMode()? "http://localhost:8000/" : "https://api.coopnex.com/";
+const API_BASE = isDevMode()? "http://localhost:8000/" : "https://api.smix.com.ng/";
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class BusinessService {
         const authtoken = localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
         
-        return this.http.post<any>(API_BASE + "business/update", userData, {headers});
+        return this.http.post<any>(API_BASE + "business/update/", userData, {headers});
     }
 
     updateLogo(file:File){

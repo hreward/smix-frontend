@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 
-const API_BASE = isDevMode()? "http://localhost:8000/" : "https://api.coopnex.com/";
+const API_BASE = isDevMode()? "http://localhost:8000/" : "https://api.smix.com.ng/";
 
 @Injectable({
 	providedIn: 'root'
