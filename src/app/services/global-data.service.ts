@@ -9,18 +9,12 @@ import { Wallet, emptywallet } from '../interfaces/wallet';
 export class GlobalDataService {
 	title:BehaviorSubject<string>;
 	sideBarOpen:BehaviorSubject<boolean>;
-	thisUser:BehaviorSubject<User>;
-	userWallet:BehaviorSubject<Wallet>;
 	isLogin:BehaviorSubject<boolean>;
-	adminMode:BehaviorSubject<boolean>;
 	
 	constructor() {
 		this.title = new BehaviorSubject<string>("");
 		this.sideBarOpen = new BehaviorSubject<boolean>(false);
-		this.thisUser = new BehaviorSubject<User>(emptyuser);
-		this.userWallet = new BehaviorSubject<Wallet>(emptywallet);
 		this.isLogin = new BehaviorSubject<boolean>(false);
-		this.adminMode = new BehaviorSubject<boolean>(false);
 		if(localStorage.getItem("cauthtoken") === null || localStorage.getItem("cauthtoken") === "" ){
 			this.isLogin = new BehaviorSubject<boolean>(false);
 		} else {

@@ -24,6 +24,7 @@ export class LoginComponent {
                     this.toast.info(data.message, {id:"loginmsg", dismissible:true, autoClose:true, duration: 7000});
 					localStorage.setItem("cauthtoken", data.data.token);
                     this.router.navigate(["/home"]);
+                    console.log("ddddd")
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }

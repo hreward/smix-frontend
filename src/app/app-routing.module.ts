@@ -16,6 +16,7 @@ import { NewClientComponent } from './pages/main/clients/new-client/new-client.c
 import { NewInvoiceComponent } from './pages/main/invoices/new-invoice/new-invoice.component';
 import { InvoiceDetailsComponent } from './pages/main/invoices/invoice-details/invoice-details.component';
 import { ViewInvoiceComponent } from './pages/public/view-invoice/view-invoice.component';
+import { AuthguardGuard } from './guards/authguard.guard';
 
 const routes: Routes = [
 	// { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
@@ -25,7 +26,7 @@ const routes: Routes = [
 	{ path: 'verify-code', component: VerifycodeComponent },
 	{ path: 'view-invoice/:id', component: ViewInvoiceComponent },
 	{
-		path: '', component: MainComponent,
+		path: '', component: MainComponent, canActivate: [AuthguardGuard],
 		children: [
 			{ path: 'home', component: DashboardComponent },
 			{ path: 'dashboard', component: DashboardComponent },

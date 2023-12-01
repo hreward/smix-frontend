@@ -1,1 +1,46 @@
-<p>invoices works!</p>
+<!-- Page Title Header Starts-->
+<div class="row page-title-header">
+	<div class="col-12">
+		<div class="page-header">
+			<h4 class="page-title">Invoices</h4>
+			<div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
+				<ul class="quick-links">
+					<li><a>Invoices List</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Invoice No.</th>
+							<th>Client ID</th>
+							<th>Amount</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let invoice of invoices">
+							<td>{{invoice.createdat | date:'MMM d, YY'}}</td>
+							<td>{{invoice.reference}}</td>
+							<td>{{invoice.clientreference}}</td>
+							<td>{{invoice.amount | currency:invoice.currency}}</td>
+							<td>
+								<label *ngIf="invoice.status == 'paid'" class="badge badge-success">{{invoice.status}}</label>
+								<label *ngIf="invoice.status == 'unpaid'" class="badge badge-danger">{{invoice.status}}</label>
+								<label *ngIf="invoice.status == 'partly paid'" class="badge badge-warning">{{invoice.status}}</label>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
