@@ -22,9 +22,9 @@ export class LoginComponent {
             next: (data:any) => {
                 this.fetchingData = false;
                 if(data.status && data.success){
-                    this.toast.info(data.message, {id:"loginmsg", dismissible:true, autoClose:true, duration: 7000});
-					localStorage.setItem("cauthtoken", data.data.token);
+                    localStorage.setItem("cauthtoken", data.data.token);
                     setTimeout(() => {
+                        this.toast.info(data.message, {id:"loginmsg", dismissible:true, autoClose:true, duration: 7000});
                         this.router.navigate(["/home"]);
                     }, 3000);
                 } else {

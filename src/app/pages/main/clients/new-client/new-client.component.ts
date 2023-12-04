@@ -13,11 +13,14 @@ export class NewClientComponent {
 
 	fetchingData = false;
 	avatarUrl = '';
+	avatarFile!: File;
 
 	constructor(private clientService: ClientService, private toast:HotToastService, private router: Router){}
 
 	submit(f:NgForm){
 		if(f.invalid) return;
+
+		f.value['avatar'] = this.avatarFile;
 		this.clientService.newClient(f.value).subscribe({
             next: (data:any) => {
                 this.fetchingData = false;
@@ -30,7 +33,6 @@ export class NewClientComponent {
             },
             error: (error:any) => {
                 this.fetchingData = false;
-				console.log(typeof(error.error.error))
                 if(error.error instanceof ProgressEvent){
                     this.toast.error("Check internet connection", {id:"errmsg", autoClose:true});
                 } else if(typeof(error.error.error) == 'string'){
@@ -43,11 +45,11 @@ export class NewClientComponent {
 	}
 
 	avatarUpload(event: any): void {
-		const file = event.target.files[0];
+		this.avatarFile = event.target.files[0];
 		const reader = new FileReader();
 		reader.onload = (e) => {
 		  	this.avatarUrl = e.target?.result as string;
 		};
-		reader.readAsDataURL(file);
+		reader.readAsDataURL(this.avatarFile);
 	}
 }

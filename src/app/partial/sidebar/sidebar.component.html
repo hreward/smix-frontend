@@ -1,69 +1,69 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-		<ul class="nav text-gray">
-			<li class="nav-item nav-category py-3 mx-3"><h4 class="text-truncate">{{business.name}}</h4><h6 class="text-truncate">ID: {{business.reference}}</h6></li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/dashboard" routerLinkActive="active" (click)="closeSidebar()">
-					<i class="menu-icon fa fa-search"></i>
-					<span class="menu-title">Dashboard</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" data-toggle="collapse" href="#ui-clients" aria-expanded="false" aria-controls="ui-clients">
-					<i class="menu-icon fa fa-user"></i>
-					<span class="menu-title">Client Profiles</span>
-					<i class="menu-arrow"></i>
-				</a>
-				<div class="collapse" id="ui-clients">
-					<ul class="nav flex-column sub-menu">
-						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/client-profiles" routerLinkActive="active" (click)="closeSidebar()">Client Profile list</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/newclient" routerLinkActive="active" (click)="closeSidebar()">New Client Profile</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/transactions" routerLinkActive="active" (click)="closeSidebar()">
-					<i class="menu-icon typcn typcn-document-text"></i>
-					<span class="menu-title">Transactions</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" data-toggle="collapse" href="#ui-invoice" aria-expanded="false" aria-controls="ui-invoice">
-					<i class="menu-icon fa fa-newspaper-o"></i>
-					<span class="menu-title">Invoices</span>
-					<i class="menu-arrow"></i>
-				</a>
-				<div class="collapse" id="ui-invoice">
-					<ul class="nav flex-column sub-menu">
-						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/invoices" routerLinkActive="active" (click)="closeSidebar()">Invoice list</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link rounded mx-3" routerLink="/newinvoice" routerLinkActive="active" (click)="closeSidebar()">New Invoice</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/analytics" routerLinkActive="active" (click)="closeSidebar()">
-					<i class="menu-icon typcn typcn-document-text"></i>
-					<span class="menu-title">Report and Analytics</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" routerLink="/customer-support" routerLinkActive="active" (click)="closeSidebar()">
-					<i class="menu-icon typcn typcn-document-text"></i>
-					<span class="menu-title">Customer Support</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link rounded mx-3" (click)="logout()" (click)="closeSidebar()">
-					<i class="menu-icon typcn typcn-document-text"></i>
-					<span class="menu-title">Logout</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<ul class="nav text-gray">
+		<li class="nav-item nav-category py-3 mx-3"><h4 class="text-truncate">{{business.name || ''}}</h4><h6 class="text-truncate">ID: {{business.reference}}</h6></li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" routerLink="/dashboard" routerLinkActive="active" (click)="closeSidebar()">
+				<i class="fa fa-search mr-3"></i>
+				<span class="menu-title">Dashboard</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" data-toggle="collapse" href="#ui-clients" aria-expanded="false" aria-controls="ui-clients">
+				<i class="menu-icon fa fa-user"></i>
+				<span class="menu-title">Client Profiles</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="ui-clients">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link rounded mx-3" routerLink="/client-profiles" routerLinkActive="active" (click)="closeSidebar()">Client Profile list</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link rounded mx-3" routerLink="/newclient" routerLinkActive="active" (click)="closeSidebar()">New Client Profile</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" routerLink="/transactions" routerLinkActive="active" (click)="closeSidebar()">
+				<i class="menu-icon typcn typcn-document-text"></i>
+				<span class="menu-title">Transactions</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" data-toggle="collapse" href="#ui-invoice" aria-expanded="false" aria-controls="ui-invoice">
+				<i class="menu-icon fa fa-newspaper-o"></i>
+				<span class="menu-title">Invoices</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="ui-invoice">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item">
+						<a class="nav-link rounded mx-3" routerLink="/invoices" routerLinkActive="active" (click)="closeSidebar()">Invoice list</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link rounded mx-3" routerLink="/newinvoice" routerLinkActive="active" (click)="closeSidebar()">New Invoice</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" routerLink="/analytics" routerLinkActive="active" (click)="closeSidebar()">
+				<i class="menu-icon typcn typcn-document-text"></i>
+				<span class="menu-title">Report and Analytics</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" routerLink="/customer-support" routerLinkActive="active" (click)="closeSidebar()">
+				<i class="menu-icon typcn typcn-document-text"></i>
+				<span class="menu-title">Customer Support</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link rounded mx-3" (click)="logout()" (click)="closeSidebar()">
+				<i class="menu-icon typcn typcn-document-text"></i>
+				<span class="menu-title">Logout</span>
+			</a>
+		</li>
+	</ul>
+</nav>

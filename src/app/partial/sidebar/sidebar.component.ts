@@ -12,12 +12,15 @@ import { BusinessService } from 'src/app/services/business.service';
 export class SidebarComponent {
 
 	fetchingData = false;
-    business:any;
+    business ={
+        name: '',
+        reference: ''
+    };
 
 	constructor(private authService: AuthService, private businessService: BusinessService, private toast: HotToastService, private router: Router){}
 
     ngOnInit(){
-        this.getBusiness();
+        // this.getBusiness();
     }
 
 	getBusiness(){
@@ -25,7 +28,8 @@ export class SidebarComponent {
             next: (data:any) => {
                 this.fetchingData = false;
                 if(data.status && data.success){
-                    this.business = data.data;
+                    this.business.name = data.data.name;
+                    this.business.reference = data.data.reference;
                 } else {
                     this.toast.error(data.message, {id:"errmsg"});
                 }
@@ -77,10 +81,16 @@ export class SidebarComponent {
 		let sideBar = document.getElementById('sidebar');
 		let sideBarBtn = document.getElementById('openmenu');
 		let source:HTMLElement = <HTMLElement>event.target;
+        
+        // check if sidebar is open
+        if(!(sideBar?.classList.contains('active'))){
+            return;
+        }
+
 		if(source == (sideBarBtn) || sideBarBtn?.contains(source)){
-			event.preventDefault();
+			// event.preventDefault();
 		} else if (!sideBar?.contains(source)){
-			event.preventDefault();
+			// event.preventDefault();
             sideBar?.classList.remove('active');
         }
 	}

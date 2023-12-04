@@ -29,8 +29,14 @@ export class ClientService {
     newClient(clientData:any){
         let authtoken=localStorage.getItem("cauthtoken") || "";
         const headers = { 'Authorization': authtoken };
+
+        // arrange in form data
+        const formData = new FormData();
+        Object.entries(clientData).forEach((value:any)=>{
+            formData.append(value[0], value[1]);
+        });
         
-        return this.http.post<any>(API_BASE + "client/new", clientData, {headers});
+        return this.http.post<any>(API_BASE + "client/new", formData, {headers});
     }
 
     deleteClient(clientid:string){

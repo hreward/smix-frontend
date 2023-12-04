@@ -27,7 +27,7 @@ const routes: Routes = [
 	{ path: 'verify-code', component: VerifycodeComponent },
 	{ path: 'view-invoice/:id', component: ViewInvoiceComponent },
 	{ path: 'welcome', component: LandingPageComponent },
-	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+	// { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 	{
 		path: '', component: MainComponent, canActivate: [AuthguardGuard],
 		children: [

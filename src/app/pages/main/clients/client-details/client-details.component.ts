@@ -12,7 +12,16 @@ export class ClientDetailsComponent {
 
 	clientid: any;
 	fetchingData = false;
-	client:any;
+	client:any = {
+        email: "",
+        name: "",
+        id: "",
+        phone: "",
+        address: "",
+        avatar: "",
+        status: "",
+        createdat: ""
+    }
 
 	constructor(private activatedRoute: ActivatedRoute, private clientService: ClientService, private toast:HotToastService, private router: Router){}
 
