@@ -1,0 +1,19 @@
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .menu-list.d-md-inline-block {
+        display: none;
+    }
+
+    .menu-list.side-menu {
+        display: block;
+    }
+}
